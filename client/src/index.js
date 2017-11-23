@@ -1,7 +1,8 @@
 // REACT
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, Route, browserHistory, } from 'react-router';
+// import { Router, Route, browserHistory, } from 'react-router';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 // REDUX
 import { Provider } from 'react-redux';
@@ -17,11 +18,10 @@ import App from './app/App';
 // REDUX STORE
 export const store = configureStore();
 
-
 const router = (
     <Provider store={store}>
-        <Router history={browserHistory}>
-            <Route path='/' component={App}/>
+        <Router>
+            <App/>
         </Router>
     </Provider>
 );

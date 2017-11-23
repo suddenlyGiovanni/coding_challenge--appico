@@ -6,12 +6,13 @@ export const user = ( state = {}, action ) => {
 
         case LOAD_USER: {
             return state;
+
         }
 
         default:
             return state;
     }
 
-    return state;
+    // return state;
 };
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
