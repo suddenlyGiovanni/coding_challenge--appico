@@ -8,7 +8,7 @@ The test should be done in React with the following external dependencies:
 You could add more external dependencies, but they should only be the ones you really feel that you need.
 
 ### Article list:
-![article-list](../readme/article-list.png)
+![article-list](./readme/article-list.png)
 The main screen contains:
 A big title which has a dynamic date field (the date selected on the right calendar)
 On the right side you have a calendar (the calendar can be done with or without external component)
@@ -21,7 +21,7 @@ You can change the date of the calendar and therefore the news displayed should 
 When changing the filters below the calendar the list of news changes accordingly. When selecting one or more of the three possible news resources the ‘all’ checkbox goes unselected. And if unchecking the three news resources the ‘all' should get checked.
 
 ### Article detail:
-![article-display](../readme/article-display.png)
+![article-display](./readme/article-display.png)
 When clicking on the ‘Read more’, the title or the copy of the article, it should change the screen to the article detail. In the detail page we basically show the same information of the selected article but expanded. There is also a back arrow to go back to the main screen.
 
 ## Execution:
@@ -56,8 +56,7 @@ $ cd config && touch secrets.json
 ```
 
 ##### Secret.json
-Paste in the following code and remember to configure [mongoDB] accordingly...
-You should also edit 'hfClientSecret' property with the correct hello fresh api client secret...
+
 ```javascript
 {}
 ```
