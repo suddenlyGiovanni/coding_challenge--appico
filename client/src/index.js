@@ -12,7 +12,7 @@ import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 
 // COMPONENTS
-import App form './app/App';
+import App from './app/App';
 
 // REDUX STORE
 export const store = configureStore();
