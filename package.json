@@ -1,0 +1,27 @@
+{
+    "name": "",
+    "version": "0.0.1",
+    "private": true,
+    "scripts": {
+        "start": "npm run production",
+        "production": "node ./server/bin/www",
+        "development": "concurrently \"npm run server\" \"npm run client\"",
+        "server": "nodemon ./server/bin/www",
+        "client": "node ./server/bin/start-client.js"
+    },
+    "dependencies": {
+        "axios": "^0.17.0",
+        "body-parser": "~1.18.2",
+        "compression": "^1.7.1",
+        "debug": "~2.6.9",
+        "express": "~4.15.5",
+        "morgan": "~1.9.0",
+        "serve-favicon": "~2.4.5"
+    },
+    "devDependencies": {
+        "concurrently": "^3.5.0",
+        "eslint": "^4.10.0",
+        "eslint-plugin-react": "^7.4.0",
+        "nodemon": "^1.12.1"
+    }
+}
