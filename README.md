@@ -9,6 +9,7 @@ You could add more external dependencies, but they should only be the ones you r
 
 ### Article list:
 ![article-list](./readme/article-list.png)
+
 The main screen contains:
 A big title which has a dynamic date field (the date selected on the right calendar)
 On the right side you have a calendar (the calendar can be done with or without external component)
@@ -22,6 +23,7 @@ When changing the filters below the calendar the list of news changes accordingl
 
 ### Article detail:
 ![article-display](./readme/article-display.png)
+
 When clicking on the ‘Read more’, the title or the copy of the article, it should change the screen to the article detail. In the detail page we basically show the same information of the selected article but expanded. There is also a back arrow to go back to the main screen.
 
 ## Execution:
@@ -41,7 +43,6 @@ My app is deployed on
 
 ## Installation
 to run the code locally follow these installation instructions:
-- install MongoDB;
 - install Node.js;
 
 ```bash
@@ -55,7 +56,7 @@ $ mkdir config
 $ cd config && touch secrets.json
 ```
 
-##### Secret.json
+##### secret.json
 
 ```javascript
 {}
