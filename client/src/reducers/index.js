@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 // IMPORT THE INDIVIDUAL REDUCERS:
 
-import { user } from './user';
+import { news } from './news';
 
-export default combineReducers( { user } );
+export default combineReducers( { news } );

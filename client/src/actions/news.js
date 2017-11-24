@@ -1,6 +1,6 @@
-export const LOAD_USER = 'LOAD_USER';
+export const LOAD_NEWS = 'LOAD_NEWS';
 
 // ACTION CREATORS:
 
-export const loadUser = user => ( { type: LOAD_USER, user, } );
+export const loadNews = news => ( { type: LOAD_NEWS, news } );
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

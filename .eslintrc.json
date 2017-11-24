@@ -8,19 +8,24 @@
     "extends": "eslint:recommended",
     "parserOptions": {
         "ecmaFeatures": {
+            "ecmaVersion": 2017,
+            "sourceType": "module",
             "experimentalObjectRestSpread": true,
             "jsx": true
         },
         "sourceType": "module"
     },
     "plugins": [
-        "react"
+        "react",
+        "babel"
     ],
     "rules": {
         "indent": [
             "error",
             4,
-            { "SwitchCase": 1 }
+            {
+                "SwitchCase": 1
+            }
         ],
         "linebreak-style": [
             "error",
