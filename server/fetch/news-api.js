@@ -6,22 +6,33 @@ axios.defaults.headers.common['Authorization'] = `Bearer ${newsApiKey}`;
 
 // FETCH ERROR HANDLING:
 const handleErrors = error => {
+        const err = new Error('News API Error:');
     if ( error.response ) {
         const { data, status, headers } = error.response;
-        console.log('Fetch ERROR: \nThe request was made and the server responded with a status code that falls out of the range of 2xx');
-        console.log( 'Error Data: \n', data );
-        console.log( 'Error Status: ', status );
-        console.log( 'Error Headers: \n', headers );
+        const errorMessage = 'Fetch ERROR: \nThe request was made and the server RESPONDED with a status code that falls out of the range of 2xx'
+        // console.log( errorMessage );
+        // console.log( 'Error Data: \n', data );
+        // console.log( 'Error Status: ', status );
+        // console.log( 'Error Headers: \n', headers );
+        err.message = err.message + '\n' + errorMessage + '\n' + data.message;
+        err.status = status;
     } else if ( error.request ) {
-        console.log('Fetch ERROR: \nThe request was made but no response was received');
+        const errorMessage = 'Fetch ERROR: \nThe request was made but NO RESPONSE WAS RECEIVED';
+        // console.log( errorMessage );
         // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
         // http.ClientRequest in node.js
         console.log( 'Error Request: \n', error.request );
+        err.message = err.message + '\n' + errorMessage;
+        err.status = 400;
     } else {
-        console.log('Fetch ERROR: \nSomething happened in setting up the request that triggered an Error');
-        console.log( 'Error message: ', error.message );
+        const errorMessage = 'Fetch ERROR: \nSomething happened in setting up the request that triggered an Error';
+        // console.log( errorMessage );
+        // console.log( 'Error message: ', error.message );
+        err.message = err.message + '\n' + errorMessage;
+        err.status = 400;
     }
-    console.log( 'Error Config: \n', error.config );
+    // console.log( 'Error Config: \n', error.config );
+    throw err;
 };
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -29,11 +40,10 @@ const handleErrors = error => {
 module.exports.fetchNews = async url => {
     try {
         const response = await axios(url);
-        if (response.status === 200) {
-            return response.data.articles;
-        } else {
+        if (response.status !== 200) {
             throw Error(response)
         }
+        return response.data.articles;
     } catch (err) {
         handleErrors(err)
     }

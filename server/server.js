@@ -42,7 +42,7 @@ app.use( function ( err, req, res, next ) {
     res.locals.error = req.app.get( 'env' ) === 'development'? err : {};
 
     res.status( err.status || 500 );
-    console.log( err );
+    console.log( err.message );
     res.sendStatus( 500 );
 } );
 // _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _

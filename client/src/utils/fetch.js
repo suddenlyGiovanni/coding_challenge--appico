@@ -24,6 +24,7 @@ const handleErrors = error => {
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 export const fetchNews = () => {
+
     return axios.get( '/api/news' )
         .then( res => store.dispatch( loadNews( res.data ) ) )
         .catch( err => handleErrors( err ) );
