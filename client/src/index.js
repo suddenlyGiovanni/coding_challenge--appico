@@ -1,30 +1,20 @@
 // REACT
 import React from 'react';
-import ReactDOM from 'react-dom';
-// import { Router, Route, browserHistory, } from 'react-router';
-import { BrowserRouter as Router } from 'react-router-dom';
-
-// REDUX
-import { Provider } from 'react-redux';
-import configureStore from './store/configureStore';
+import { render } from 'react-dom';
 
 // MISC
-import './index.css';
+import configureStore from './store/configureStore';
 import registerServiceWorker from './registerServiceWorker';
 
 // COMPONENTS
-import App from './app/App';
+import Root from './root';
 
 // REDUX STORE
 export const store = configureStore();
 
-const router = (
-    <Provider store={store}>
-        <Router>
-            <App/>
-        </Router>
-    </Provider>
+render(
+    <Root store={store}/>,
+    document.getElementById( 'root' )
 );
 
-ReactDOM.render( router, document.getElementById( 'root' ) );
 registerServiceWorker();

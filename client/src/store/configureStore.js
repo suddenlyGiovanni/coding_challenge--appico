@@ -8,6 +8,11 @@ import rootReducer from '../reducers';
 import { composeWithDevTools } from 'redux-devtools-extension';
 const middlewares = [ reduxPromise, logger, ];
 
-export default function configureStore( initialState ) {
-    return createStore( rootReducer, initialState, composeWithDevTools( applyMiddleware( ...middlewares ) ) );
-}
+const configureStore = ( initialState ) => (
+    createStore(
+        rootReducer,
+        initialState,
+        composeWithDevTools( applyMiddleware( ...middlewares ) ) )
+);
+
+export default configureStore;

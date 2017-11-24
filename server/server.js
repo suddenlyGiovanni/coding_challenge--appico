@@ -48,14 +48,14 @@ app.use( function ( err, req, res, next ) {
 // _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 // ROUTING _____________________________________________________________________
-/* SERVE THE STATIC FILES - APP */
+/* SERVE THE API ROUTES */
+app.use( '/api', require( './routes/api' ) );
 
-app.get( '/', ( req, res ) => {
+/* SERVE THE STATIC FILES - APP */
+app.get( '/*', ( req, res ) => {
     res.sendFile( path.resolve( __dirname, '../client/build', 'index.html' ) );
 } );
 
-/* SERVE THE API ROUTES */
-app.use( '/api', require( './routes/api' ) );
 
 
 module.exports = app;

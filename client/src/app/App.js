@@ -15,26 +15,28 @@ export default class App extends Component {
     }
 
     render() {
-        return ( <div>
-            <Router>
-                <div>
-                    <ul>
-                        <li><Link to='/'>List</Link></li>
-                        <li><Link to='/details'>Details</Link></li>
-                    </ul>
+        return (
+            <div>
+                <Router>
+                    <div>
+                        <ul>
+                            <li><Link to='/'>List</Link></li>
+                            <li><Link to='/details'>Details</Link></li>
+                        </ul>
 
-                    <hr/>
+                        <hr/>
 
-                    <Route
-                        exact={true}
-                        path='/'
-                        component={ArticleListContainer}/>
+                        <Route
+                            exact={true}
+                            path='/'
+                            component={ArticleListContainer}/>
 
-                    <Route
-                        path='/details'
-                        component={ArticleDetails}/>
-                </div>
-            </Router>
-        </div> );
+                        <Route
+                            path='/details'
+                            component={ArticleDetails}/>
+                    </div>
+                </Router>
+            </div>
+        );
     }
 }
