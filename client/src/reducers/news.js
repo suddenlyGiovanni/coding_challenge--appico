@@ -1,4 +1,4 @@
-import { LOAD_NEWS } from '../actions/news';
+import { LOAD_NEWS, SET_DATES } from '../actions/news';
 
 export const news = ( state = {}, action ) => {
 
@@ -16,3 +16,19 @@ export const news = ( state = {}, action ) => {
     return state;
 };
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+export const dates = ( state = {}, action ) => {
+
+    switch ( action.type ) {
+
+        case SET_DATES: {
+            state = Object.assign({}, state, action.dates);
+            break;
+        }
+
+        default:
+            return state;
+    }
+
+    return state;
+};
