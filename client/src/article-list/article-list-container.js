@@ -10,7 +10,7 @@ import moment from 'moment';
 
 // COMPONENTS
 import DayPickerRangeControllerWrapper from '../date-picker/day-picker-range-controller-wrapper';
-
+import SourceSelector from '../source-selector/source-selector';
 
 class ArticleListContainer extends Component {
     constructor(props){
@@ -21,12 +21,13 @@ class ArticleListContainer extends Component {
     }
 
     render(){
-        // console.log(this.props.startDate);
+        // console.log(this.props);
         const { todayDate } = this.state;
         return (
             <div>
                 <h1>ArticleListContainer</h1>
-                <h2>News for <Moment format='ddd, MMM DD' date={todayDate} /></h2>
+                <h2>News for  <Moment format='ddd, MMM DD' date={this.props.dates.endDate}/>
+                </h2>
                 <DayPickerRangeControllerWrapper
                     firstDayOfWeek={1}
                     numberOfMonths={1}
@@ -36,14 +37,13 @@ class ArticleListContainer extends Component {
                     initialStartDate={todayDate}
                     initialEndDate={todayDate}
                 />
+                <SourceSelector />
             </div>
         );
     }
 }
 
 /* REDUX */
-const mapStateToProps = state => {
-    return {};
-};
+const mapStateToProps = state => ({dates: state.dates});
 
 export default connect( mapStateToProps )( ArticleListContainer );

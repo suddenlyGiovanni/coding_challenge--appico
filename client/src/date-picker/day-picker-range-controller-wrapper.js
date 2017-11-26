@@ -5,7 +5,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // REDUX
-import { store } from '../index.js';
+import { store } from '../index';
 // ACTIONS
 import { setDates } from '../actions/news';
 
@@ -113,10 +113,18 @@ class DayPickerRangeControllerWrapper extends React.Component {
 
         this.onDatesChange = this.onDatesChange.bind( this );
         this.onFocusChange = this.onFocusChange.bind( this );
+        this.dispatchDates = this.dispatchDates.bind( this );
+    }
+
+    componentDidMount(){
+        const { startDate, endDate } = this.state;
+        // console.log('inside component did mount', startDate, endDate);
+        this.dispatchDates( { startDate, endDate, } );
     }
 
     onDatesChange( { startDate, endDate, } ) {
         this.setState( { startDate, endDate, } );
+        this.dispatchDates( { startDate, endDate, } );
     }
 
     onFocusChange( focusedInput ) {
@@ -128,8 +136,11 @@ class DayPickerRangeControllerWrapper extends React.Component {
         } );
     }
 
+    dispatchDates(selectedDates){
+        store.dispatch(setDates(selectedDates));
+    }
+
     render() {
-        console.log(this.state);
         const { showInputs } = this.props;
         const { focusedInput, startDate, endDate, } = this.state;
 
