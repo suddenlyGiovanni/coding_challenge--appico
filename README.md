@@ -14,17 +14,17 @@ The main screen contains:
 - A big title which has a dynamic date field (the date selected on the right calendar)
 - On the right side you have a calendar (the calendar can be done with or without external component)
 - A list of articles for the selected dates. The articles can be fetched at this API https://newsapi.org/ (It has a free plan for developers).
-- Below the calendar we have a few checkbox to filter the news. 
+- Below the calendar we have a few checkbox to filter the news.
 You can pick three news sources (from here https://newsapi.org/sources) and put them there so the list can be filtered by them. This should be done through the call to the API, instead of filtering the response.
 
 #### Features:
 The idea is simple:
 
-> We start with the calendar displaying the date of today. 
+> We start with the calendar displaying the date of today.
 
 > The left list contains up to 10 (max) of the top news of today (https://newsapi.org/docs/endpoints/top-headlines)
 
-> You can change the date of the calendar and therefore the news displayed should change for that date as well. 
+> You can change the date of the calendar and therefore the news displayed should change for that date as well.
 You could select more than one day (a period) in the calendar, like from 13/11/17 - 15/11/17. That should give you the top news between those two dates.
 
 > When changing the filters below the calendar the list of news changes accordingly. When selecting one or more of the three possible news resources the ‘all’ checkbox goes unselected. And if unchecking the three news resources the ‘all' should get checked.
@@ -32,14 +32,14 @@ You could select more than one day (a period) in the calendar, like from 13/11/1
 ### Article detail:
 ![article-display](./readme/article-display.png)
 #### Features:
-> When clicking on the ‘Read more’, the title or the copy of the article, it should change the screen to the article detail. 
+> When clicking on the ‘Read more’, the title or the copy of the article, it should change the screen to the article detail.
 
-> In the detail page we basically show the same information of the selected article but expanded. 
+> In the detail page we basically show the same information of the selected article but expanded.
 
 > There is also a back arrow to go back to the main screen.
 
 ## Execution:
-My app is deployed on Heroku
+My app is deployed on [Heroku](https://appico-news.herokuapp.com/)
 
 ### Tech Stack:
 | **Frontend** | **Backend** |
