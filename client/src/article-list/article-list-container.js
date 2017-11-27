@@ -44,6 +44,10 @@ class ArticleListContainer extends Component {
 }
 
 /* REDUX */
-const mapStateToProps = state => ({dates: state.dates});
+const mapStateToProps = state => ({
+    news: state.news && state.news.data,
+    dates: state.dates && state.dates,
+    sources: state.sources && state.sources
+});
 
 export default connect( mapStateToProps )( ArticleListContainer );

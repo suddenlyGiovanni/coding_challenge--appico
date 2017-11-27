@@ -24,42 +24,65 @@ class SourceSelector extends Component {
             techcrunch: false,
             hackerNews: false
         };
+        this.handleChange = this.handleChange.bind(this);
     }
 
-    componentDidUpdate() {
-        let sources;
-        this.state.all
-            ? (sources = { theVerge: true, techcrunch: true, hackerNews: true })
-            : (sources = this.state);
-        delete sources.all;
-        this.dispatchSources( sources );
+    componentDidMount() {
+        if (this.state.all) {
+            this.dispatchSources( { theVerge: true, techcrunch: true, hackerNews: true } );
+        }
     }
 
-    handleChange( event, checked ) {
-        const name = event.target.value;
-        const nextState = { ...this.state,[ name ]: checked };
-        let nextStateToSave;
-
-        if ( name === 'all' ) {
-            !this.state.all && ( nextStateToSave = {
-                all: true,
-                theVerge: false,
-                techcrunch: false,
-                hackerNews: false,
-            } );
-        } else {
-            if ( !nextState.all && nextState.theVerge && nextState.techcrunch && nextState.hackerNews ) {
-                nextStateToSave = {
-                    all: true,
-                    theVerge: false,
-                    techcrunch: false,
-                    hackerNews: false,
-                };
+    componentDidUpdate( prevProps, prevState ) {
+        // console.log('SourceSelector - componentDidUpdate: \nprevState: ', prevState, '\nnewState: ', this.state);
+        // console.log('SourceSelector - componentDidUpdate: \nprevState === newState: ', prevState === this.state);
+        if (prevState !== this.state) {
+            let sources;
+            if (this.state.all) {
+                sources = { theVerge: true, techcrunch: true, hackerNews: true };
             } else {
-                nextStateToSave = {...nextState, all: false, };
+                sources = this.state;
+                delete sources.all;
+            }
+            this.dispatchSources( sources );
+        }
+    }
+
+    handleChange(event) {
+        const value = event.target.checked;
+        const name = event.target.name;
+        const stateToSave = this.handleStateLogicChange(name, value);
+        // console.log('\nfn: handleChange - stateToSave: ', stateToSave);
+        this.setState( stateToSave );
+    }
+
+    handleStateLogicChange( name, value ){
+        const newSource = { [ name ]: value };
+        const prevState = this.state;
+        const nextState = { ...prevState, ...newSource };
+        // console.log('\nfn: handleStateLogicChange',
+        //     '\nnewSource: ', newSource ,
+        //     '\nprevState: ', prevState,
+        //     '\nnextState: ', nextState
+        // );
+        let newState;
+        if ( name === 'all' ) {
+            console.log('user selected: ', name);
+            if (!prevState.all) {
+                newState = { all: true, theVerge: false, techcrunch: false, hackerNews: false };
             }
         }
-        this.setState( nextStateToSave );
+        if (name !== 'all') {
+            console.log('user selected: ', name);
+            if ( nextState.theVerge && nextState.techcrunch && nextState.hackerNews ) {
+                newState = { all: true, theVerge: false, techcrunch: false, hackerNews: false };
+            } else if ( !nextState.theVerge && !nextState.techcrunch && !nextState.hackerNews ) {
+                newState = { ...nextState, all: true };
+            } else {
+                newState = { ...nextState, all: false };
+            }
+        }
+        return newState;
     }
 
 
@@ -81,8 +104,8 @@ class SourceSelector extends Component {
                             control={
                                 <Checkbox
                                     checked = {this.state.all}
-                                    onChange = {(event, checked ) => this.handleChange( event, checked )}
-                                    value = 'all'/>
+                                    onChange = {this.handleChange}
+                                    name = 'all'/>
                             }
                             label='All'/>
 
@@ -90,8 +113,8 @@ class SourceSelector extends Component {
                             control={
                                 <Checkbox
                                     checked = {this.state.theVerge}
-                                    onChange = {(event, checked ) => this.handleChange( event, checked )}
-                                    value = 'theVerge'/>
+                                    onChange = {this.handleChange}
+                                    name = 'theVerge'/>
                             }
                             label='the Verge'/>
 
@@ -99,8 +122,8 @@ class SourceSelector extends Component {
                             control={
                                 <Checkbox
                                     checked = {this.state.techcrunch}
-                                    onChange = {(event, checked ) => this.handleChange( event, checked )}
-                                    value = 'techcrunch'/>
+                                    onChange = {this.handleChange}
+                                    name = 'techcrunch'/>
                             }
                             label='TechCrunch'/>
 
@@ -108,8 +131,8 @@ class SourceSelector extends Component {
                             control={
                                 <Checkbox
                                     checked = {this.state.hackerNews}
-                                    onChange = {(event, checked ) => this.handleChange( event, checked )}
-                                    value = 'hackerNews'/>
+                                    onChange = {this.handleChange}
+                                    name = 'hackerNews'/>
                             }
                             label='Hacker News'/>
 
