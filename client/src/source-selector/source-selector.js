@@ -27,30 +27,39 @@ class SourceSelector extends Component {
     }
 
     componentDidUpdate() {
-        // console.log( 'componentDidUpdate: ', this.state );
-        if (this.state.all) {
-            this.dispatchSources({ theVerge: true, techcrunch: true, hackerNews: true });
-        } else {
-            const sources = this.state;
-            delete sources.all;
-            this.dispatchSources( sources );
-        }
+        let sources;
+        this.state.all
+            ? (sources = { theVerge: true, techcrunch: true, hackerNews: true })
+            : (sources = this.state);
+        delete sources.all;
+        this.dispatchSources( sources );
     }
 
     handleChange( event, checked ) {
         const name = event.target.value;
-        const updatedSrc = { [ name ]: checked };
-        const nextState = {...this.state, ...updatedSrc };
+        const nextState = { ...this.state,[ name ]: checked };
+        let nextStateToSave;
+
         if ( name === 'all' ) {
-            !this.state.all &&
-                this.setState({ all: true, theVerge: false, techcrunch: false, hackerNews: false });
+            !this.state.all && ( nextStateToSave = {
+                all: true,
+                theVerge: false,
+                techcrunch: false,
+                hackerNews: false,
+            } );
         } else {
-            if (!nextState.all && nextState.theVerge && nextState.techcrunch && nextState.hackerNews ) {
-                this.setState({ all: true, theVerge: false, techcrunch: false, hackerNews: false });
+            if ( !nextState.all && nextState.theVerge && nextState.techcrunch && nextState.hackerNews ) {
+                nextStateToSave = {
+                    all: true,
+                    theVerge: false,
+                    techcrunch: false,
+                    hackerNews: false,
+                };
             } else {
-                this.setState({ ...nextState, all: false });
+                nextStateToSave = {...nextState, all: false, };
             }
         }
+        this.setState( nextStateToSave );
     }
 
 
