@@ -47,10 +47,12 @@ export const receiveNews = news => ( { type: RECEIVE_NEWS, news } );
 
 
 // REDUX-THUNK ACTION CREATOR
-export const fetchNewsRequest = (config) => {
+export const fetchNewsRequest = () => {
+    console.log('REDUX-THUNK fn: fetchNewsRequest');
     return dispatch => {
+        console.log('REDUX-THUNK fn: fetchNewsRequest - inside dispatch()');
         dispatch(requestNews());
-        return fetchNews(config)
+        return fetchNews()
             .then(response => {
                 console.log('REDUX-THUNK fn: fetchNewsRequest - response', response);
                 dispatch(receiveNews(response));

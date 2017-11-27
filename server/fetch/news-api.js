@@ -9,7 +9,7 @@ const handleErrors = error => {
         const err = new Error('News API Error:');
     if ( error.response ) {
         const { data, status, headers } = error.response;
-        const errorMessage = 'Fetch ERROR: \nThe request was made and the server RESPONDED with a status code that falls out of the range of 2xx'
+        const errorMessage = 'Fetch ERROR: \nThe request was made and the server RESPONDED with a status code that falls out of the range of 2xx';
         // console.log( errorMessage );
         // console.log( 'Error Data: \n', data );
         // console.log( 'Error Status: ', status );

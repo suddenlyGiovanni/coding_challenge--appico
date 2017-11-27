@@ -1,13 +1,28 @@
+// REACT
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
+// REDUX
+import { store } from '../index';
+// ACTIONS
+import { fetchNewsRequest } from '../actions';
 
+// COMPONENTS
 import ArticleListContainer from '../article-list/article-list-container';
 import ArticleDetails from '../article-details/article-details';
+
+// UTILS
+import { parseSources, parseDates } from '../utils/news-api-helper';
 
 // import './app.css';
 
 export default class App extends Component {
+    componentDidMount(){
+        const { dates, sources } = store.getState();
+
+        console.log('\ndates: ', dates, '\nsources: ', sources);
+        store.dispatch(fetchNewsRequest());
+    }
 
     render() {
         return (

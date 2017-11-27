@@ -10,8 +10,10 @@ router.get( '/', ( req, res ) => {
 // _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 
-router.get('/news', async (req, res, next) => {
+router.post('/news', async (req, res, next) => {
     try {
+        const config = req.body.config;
+        console.log( '\nconfig: ', config );
         const url = 'https://newsapi.org/v2/top-headlines?sources=bbc-news';
         const data = await fetchNews(url);
         res.json({data});

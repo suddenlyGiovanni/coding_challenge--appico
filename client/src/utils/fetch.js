@@ -1,6 +1,4 @@
 import axios from 'axios';
-import { store } from '../index.js';
-import { requestNews } from '../actions';
 
 // FETCH ERROR HANDLING:
 const handleErrors = error => {
@@ -23,9 +21,12 @@ const handleErrors = error => {
 };
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-export const fetchNews = () => {
-
-    return axios.get( '/api/news' )
-        .then( res => store.dispatch( requestNews( res.data ) ) )
+export const fetchNews = config => {
+    console.log('fetch.js fn: fetchNews()');
+    return axios.post( '/api/news', config )
+        .then( resp => {
+            console.log('fetch.js fn: fetchNews() - response: ', resp.data.data);
+            return resp.data.data;
+        } )
         .catch( err => handleErrors( err ) );
 };

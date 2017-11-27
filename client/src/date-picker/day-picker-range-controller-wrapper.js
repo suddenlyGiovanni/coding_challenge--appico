@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 // REDUX
 import { store } from '../index';
 // ACTIONS
-import { setDates } from '../actions';
+import { selectDates } from '../actions';
 
 // // COMPONENTS: REACT-DATES
 import { DayPickerRangeController } from 'react-dates';
@@ -137,7 +137,7 @@ class DayPickerRangeControllerWrapper extends React.Component {
     }
 
     dispatchDates(selectedDates){
-        store.dispatch(setDates(selectedDates));
+        store.dispatch(selectDates(selectedDates));
     }
 
     render() {
