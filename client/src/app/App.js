@@ -12,16 +12,16 @@ import ArticleListContainer from '../article-list/article-list-container';
 import ArticleDetails from '../article-details/article-details';
 
 // UTILS
-import { parseSources, parseDates } from '../utils/news-api-helper';
+import { parseQueryParams } from '../utils/news-api-helper';
 
 // import './app.css';
 
 export default class App extends Component {
     componentDidMount(){
         const { dates, sources } = store.getState();
-
         console.log('\ndates: ', dates, '\nsources: ', sources);
-        store.dispatch(fetchNewsRequest());
+        const parsedQueryParams = parseQueryParams( dates, sources );
+        store.dispatch(fetchNewsRequest(parsedQueryParams));
     }
 
     render() {
