@@ -1,0 +1,15 @@
+{
+  "short_name": "Appico News",
+  "name": "Appico News",
+  "icons": [
+    {
+      "src": "favicon.png",
+      "sizes": "196x196",
+      "type": "image/x-icon"
+    }
+  ],
+  "start_url": "./index.html",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
