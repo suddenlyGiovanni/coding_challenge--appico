@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
-import { fetchNews } from '../utils/fetch';
 
 import ArticleListContainer from '../article-list/article-list-container';
 import ArticleDetails from '../article-details/article-details';
@@ -9,10 +8,6 @@ import ArticleDetails from '../article-details/article-details';
 // import './app.css';
 
 export default class App extends Component {
-
-    componentDidMount() {
-        fetchNews();
-    }
 
     render() {
         return (

@@ -20,6 +20,10 @@ class ArticleListContainer extends Component {
         };
     }
 
+    componentDidMount(){
+        console.log('ArticleListContainer - componentDidMount - props: ', this.props);
+    }
+
     render(){
         // console.log(this.props);
         const { todayDate } = this.state;
@@ -50,4 +54,6 @@ const mapStateToProps = state => ({
     sources: state.sources && state.sources
 });
 
-export default connect( mapStateToProps )( ArticleListContainer );
+const mapDispatchToProps = dispatch => ({});
+
+export default connect( mapStateToProps, mapDispatchToProps )( ArticleListContainer );

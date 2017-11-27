@@ -1,3 +1,6 @@
+import { fetchNews } from '../utils/fetch';
+
+
 export const LOAD_NEWS = 'LOAD_NEWS';
 export const SET_DATES = 'SET_DATES';
 export const SET_SOURCES = 'SET_SOURCES';
