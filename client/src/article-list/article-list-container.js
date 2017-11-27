@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 
 // REDUX
 import { connect } from 'react-redux';
+// ACTIONS
+import { fetchNewsRequest } from '../actions';
 
 // UTILS
 import Moment from 'react-moment';
@@ -21,8 +23,16 @@ class ArticleListContainer extends Component {
         };
     }
 
-    componentDidMount(){
-        console.log('ArticleListContainer - componentDidMount - props: ', this.props);
+
+    componentWillReceiveProps(nextProps){
+        // console.log(
+        //     '\nArticleListContainer - componentWillReceiveProps - nextProps: ',
+        //     nextProps
+        // );
+        if ( ( nextProps.dates !== this.props.dates ) || ( nextProps.sources !== this.props.sources ) ) {
+            const parsedQueryParams = parseQueryParams(nextProps.dates, nextProps.sources);
+            this.props.fetchNewsRequest(parsedQueryParams);
+        }
     }
 
     render(){
@@ -55,6 +65,8 @@ const mapStateToProps = state => ({
     sources: state.sources && state.sources
 });
 
-const mapDispatchToProps = dispatch => ({});
+const mapDispatchToProps = dispatch => ( {
+    fetchNewsRequest: params => dispatch( fetchNewsRequest( params ) )
+} );
 
 export default connect( mapStateToProps, mapDispatchToProps )( ArticleListContainer );

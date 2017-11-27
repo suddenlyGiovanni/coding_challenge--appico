@@ -13,7 +13,7 @@ router.get( '/', ( req, res ) => {
 router.post('/news', async (req, res, next) => {
     try {
         const queryParams = req.body.queryParams;
-        console.log( '\nqueryParams: ', queryParams );
+        // console.log( '\nqueryParams: ', queryParams );
         const url = 'https://newsapi.org/v2/everything';
         const data = await fetchNews(url, queryParams);
         res.json({data});

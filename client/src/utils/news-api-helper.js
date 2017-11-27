@@ -1,5 +1,3 @@
-import moment from 'moment';
-
 /*
 SOURCES:
     A comma-seperated string of identifiers (maximum 20) for the news sources or
@@ -31,6 +29,7 @@ SORTBY:
 */
 
 
+// TODO: WOULD BE BETTER TO MOVE ALL THIS LOGIC TO THE BACK-END
 
 export const parseQueryParams = ( dates, sources ) => {
     let objToReturn = {};

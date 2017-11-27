@@ -22,10 +22,10 @@ const handleErrors = error => {
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 export const fetchNews = queryParams => {
-    console.log('fetch.js fn: fetchNews()');
+    // console.log('fetch.js fn: fetchNews()');
     return axios.post( '/api/news', { queryParams } )
         .then( resp => {
-            console.log('fetch.js fn: fetchNews() - response: ', resp.data.data);
+            // console.log('fetch.js fn: fetchNews() - response: ', resp.data.data);
             return resp.data.data;
         } )
         .catch( err => handleErrors( err ) );

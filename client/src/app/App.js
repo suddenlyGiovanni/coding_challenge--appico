@@ -19,7 +19,7 @@ import { parseQueryParams } from '../utils/news-api-helper';
 export default class App extends Component {
     componentDidMount(){
         const { dates, sources } = store.getState();
-        console.log('\ndates: ', dates, '\nsources: ', sources);
+        // console.log('\ndates: ', dates, '\nsources: ', sources);
         const parsedQueryParams = parseQueryParams( dates, sources );
         store.dispatch(fetchNewsRequest(parsedQueryParams));
     }

@@ -67,13 +67,13 @@ class SourceSelector extends Component {
         // );
         let newState;
         if ( name === 'all' ) {
-            console.log('user selected: ', name);
+            // console.log('user selected: ', name);
             if (!prevState.all) {
                 newState = { all: true, theVerge: false, techcrunch: false, hackerNews: false };
             }
         }
         if (name !== 'all') {
-            console.log('user selected: ', name);
+            // console.log('user selected: ', name);
             if ( nextState.theVerge && nextState.techcrunch && nextState.hackerNews ) {
                 newState = { all: true, theVerge: false, techcrunch: false, hackerNews: false };
             } else if ( !nextState.theVerge && !nextState.techcrunch && !nextState.hackerNews ) {
