@@ -19,17 +19,39 @@ class SourceSelector extends Component {
     constructor( props ) {
         super( props );
         this.state = {
-            all: false,
+            all: true,
             theVerge: false,
             techcrunch: false,
             hackerNews: false
         };
     }
 
-    handleChange( event, checked ) {
-        this.setState( { [ event.target.value ]: checked } );
+    componentDidUpdate() {
+        // console.log( 'componentDidUpdate: ', this.state );
+        if (this.state.all) {
+            this.dispatchSources({ theVerge: true, techcrunch: true, hackerNews: true });
+        } else {
+            const sources = this.state;
+            delete sources.all;
+            this.dispatchSources( sources );
+        }
     }
 
+    handleChange( event, checked ) {
+        const name = event.target.value;
+        const updatedSrc = { [ name ]: checked };
+        const nextState = {...this.state, ...updatedSrc };
+        if ( name === 'all' ) {
+            !this.state.all &&
+                this.setState({ all: true, theVerge: false, techcrunch: false, hackerNews: false });
+        } else {
+            if (!nextState.all && nextState.theVerge && nextState.techcrunch && nextState.hackerNews ) {
+                this.setState({ all: true, theVerge: false, techcrunch: false, hackerNews: false });
+            } else {
+                this.setState({ ...nextState, all: false });
+            }
+        }
+    }
 
 
     dispatchSources( sources ) {
@@ -37,7 +59,7 @@ class SourceSelector extends Component {
     }
 
     render() {
-        console.log(this.state);
+        // console.log('render: ', this.state);
         return (
             <div>
                 <FormControl component='fieldset'>
