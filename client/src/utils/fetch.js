@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { store } from '../index.js';
-import { loadNews } from '../actions/news';
+import { requestNews } from '../actions';
 
 // FETCH ERROR HANDLING:
 const handleErrors = error => {
@@ -26,6 +26,6 @@ const handleErrors = error => {
 export const fetchNews = () => {
 
     return axios.get( '/api/news' )
-        .then( res => store.dispatch( loadNews( res.data ) ) )
+        .then( res => store.dispatch( requestNews( res.data ) ) )
         .catch( err => handleErrors( err ) );
 };

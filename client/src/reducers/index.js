@@ -1,6 +1,14 @@
 import { combineReducers } from 'redux';
 // IMPORT THE INDIVIDUAL REDUCERS:
 
-import { news, dates, sources } from './news';
+import { news } from './news';
+import { dates } from './dates';
+import { sources } from './sources';
 
-export default combineReducers( { news, dates, sources } );
+const rootReducer = combineReducers( {
+    news,
+    dates,
+    sources
+} );
+
+export default rootReducer;

@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 // REDUX
 import { store } from '../index';
 // ACTIONS
-import { setSources } from '../actions/news';
+import { selectSources } from '../actions';
 
 // COMPONENTS
 import {
@@ -87,7 +87,7 @@ class SourceSelector extends Component {
 
 
     dispatchSources( sources ) {
-        store.dispatch( setSources( sources ) );
+        store.dispatch( selectSources( sources ) );
     }
 
     render() {

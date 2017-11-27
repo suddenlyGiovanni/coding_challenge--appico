@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 // REDUX
 import { store } from '../index';
 // ACTIONS
-import { setDates } from '../actions/news';
+import { setDates } from '../actions';
 
 // // COMPONENTS: REACT-DATES
 import { DayPickerRangeController } from 'react-dates';

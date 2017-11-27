@@ -1,51 +1,35 @@
-import { LOAD_NEWS, SET_DATES, SET_SOURCES } from '../actions/news';
+import { REQUEST_NEWS, RECEIVE_NEWS, INVALIDATE_NEWS } from '../actions';
 
-export const news = ( state = {}, action ) => {
+
+export const news = ( state = {
+    isFetching: false,
+    didInvalidate: false,
+    items: []
+}, action ) => {
 
     switch ( action.type ) {
 
-        case LOAD_NEWS: {
-            state = Object.assign({}, state, action.news);
-            break;
+        case INVALIDATE_NEWS: {
+            return Object.assign( {}, state, { didInvalidate: true } );
+        }
+
+        case REQUEST_NEWS: {
+            return Object.assign( {}, state, {
+                isFetching: true,
+                didInvalidate: false,
+            } );
+        }
+
+        case RECEIVE_NEWS: {
+            return Object.assign( {}, state, {
+                isFetching: false,
+                didInvalidate: false,
+                items: action.news
+            } );
         }
 
         default:
             return state;
     }
-
-    return state;
 };
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-export const dates = ( state = {}, action ) => {
-
-    switch ( action.type ) {
-
-        case SET_DATES: {
-            state = Object.assign({}, state, action.dates);
-            break;
-        }
-
-        default:
-            return state;
-    }
-
-    return state;
-};
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-export const sources = ( state = {}, action ) => {
-
-    switch ( action.type ) {
-
-        case SET_SOURCES: {
-            state = Object.assign({}, state, action.sources);
-            break;
-        }
-
-        default:
-            return state;
-    }
-
-    return state;
-};
