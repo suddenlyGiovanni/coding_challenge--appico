@@ -124,7 +124,9 @@ class DayPickerRangeControllerWrapper extends React.Component {
 
     onDatesChange( { startDate, endDate, } ) {
         this.setState( { startDate, endDate, } );
-        this.dispatchDates( { startDate, endDate, } );
+        if ( startDate &&  endDate ) {
+            this.dispatchDates( { startDate, endDate, } );
+        }
     }
 
     onFocusChange( focusedInput ) {

@@ -37,9 +37,11 @@ const handleErrors = error => {
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
-module.exports.fetchNews = async url => {
+module.exports.fetchNews = async (url, queryParams) => {
     try {
-        const response = await axios(url);
+    const response = await axios.get(url, {
+        params: { ...queryParams }
+    });
         if (response.status !== 200) {
             throw Error(response)
         }

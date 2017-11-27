@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 // UTILS
 import Moment from 'react-moment';
 import moment from 'moment';
+import { parseQueryParams } from '../utils/news-api-helper';
 
 // COMPONENTS
 import DayPickerRangeControllerWrapper from '../date-picker/day-picker-range-controller-wrapper';

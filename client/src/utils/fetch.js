@@ -21,9 +21,9 @@ const handleErrors = error => {
 };
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-export const fetchNews = config => {
+export const fetchNews = queryParams => {
     console.log('fetch.js fn: fetchNews()');
-    return axios.post( '/api/news', config )
+    return axios.post( '/api/news', { queryParams } )
         .then( resp => {
             console.log('fetch.js fn: fetchNews() - response: ', resp.data.data);
             return resp.data.data;

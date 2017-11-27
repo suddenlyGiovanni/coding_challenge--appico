@@ -12,10 +12,10 @@ router.get( '/', ( req, res ) => {
 
 router.post('/news', async (req, res, next) => {
     try {
-        const config = req.body.config;
-        console.log( '\nconfig: ', config );
-        const url = 'https://newsapi.org/v2/top-headlines?sources=bbc-news';
-        const data = await fetchNews(url);
+        const queryParams = req.body.queryParams;
+        console.log( '\nqueryParams: ', queryParams );
+        const url = 'https://newsapi.org/v2/everything';
+        const data = await fetchNews(url, queryParams);
         res.json({data});
     } catch (err) {
         next(err)
