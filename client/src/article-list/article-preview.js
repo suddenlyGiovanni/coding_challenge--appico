@@ -7,22 +7,36 @@ import { withStyles } from 'material-ui/styles';
 import Card, { CardHeader, CardMedia, CardContent, CardActions} from 'material-ui/Card';
 import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
+import Avatar from 'material-ui/Avatar';
+import red from 'material-ui/colors/red';
+import Grid from 'material-ui/Grid';
+
 
 
 const styles = theme => ( {
-    card: {
-        display: 'flex',
-        flexDirection: 'row'
-    },
     media: {
-        width: 151,
-        height: 151,
+        height: '100%',
     },
-    details: {
-        display: 'flex',
-        flexDirection: 'column',
-    }
+    avatar: {
+        backgroundColor: red[500],
+    },
 } );
+
+const capitals = word => {
+    const idxUpperCase = word.split('').map(( letter, index ) => {
+        if ( letter === letter.toUpperCase() || index === 0 ) {
+            return letter;
+        }
+    }).join('');
+    return idxUpperCase;
+};
+
+const trimStr = (string, length) => {
+    const trimmedString = string.length > length
+        ? string.substring( 0, length - 3 ) + '...'
+        : string;
+    return trimmedString;
+};
 
 
 const ArticlePreview = ( {
@@ -38,56 +52,48 @@ const ArticlePreview = ( {
 
     return (
         <div>
-            <Card className={classes.card}>
+            <Card>
+                <Grid container direction='row' justify='flex-start' alignItems='stretch' spacing={0}>
 
-                <CardMedia
-                    className={classes.media}
-                    image={urlToImage}
-                    src='img'
-                />
+                    <Grid item sm={3}>
+                        <CardMedia
+                            className={classes.media}
+                            image={urlToImage}
+                            src='img'
+                        />
+                    </Grid>
+                    <Grid item xs={12} sm={9}>
 
-                <CardContent>
-                    <Typography type='title' component='h2'>
-                        {title}
-                    </Typography>
-                    <Typography type='subheading' component='h3'>
-                        by {author}
-                    </Typography>
-                    <Typography component='p' noWrap>
-                        {description}
-                    </Typography>
-                </CardContent>
+                        <CardHeader
+                            title={trimStr(title, 50)}
+                            subheader={`by ${author}`}
+                            avatar={
+                                <Avatar aria-label="Recipe" className={classes.avatar}>
+                                    {capitals(source)}
+                                </Avatar>
+                            }
+                        />
 
-                <CardActions>
-                    <Button dense color='primary'>
-                        <Link to={`/details/${artId}`}>Read More</Link>
-                    </Button>
-                </CardActions>
+
+
+                        <CardContent>
+                            <Typography component='p'>
+                                {trimStr(description, 70)}
+                            </Typography>
+                        </CardContent>
+
+
+                        <CardActions>
+                            <Button dense color='primary'>
+                                <Typography type='button'>
+                                    <Link to={`/details/${artId}`}>Read More</Link>
+                                </Typography>
+                            </Button>
+                        </CardActions>
+
+                    </Grid>
+                </Grid>
             </Card>
-            {/* <Card className={classes.card}>
-                <CardMedia
-                    className={classes.media}
-                    image={urlToImage}
-                    src='img'
-                />
-                <div className={classes.details}>
-
-                    <CardHeader
-                        title={title}
-                        subheader={`by ${author}`}
-                    />
-                    <CardContent>
-                        <Typography component='p'>
-                            {description}
-                        </Typography>
-                    </CardContent>
-                    <CardActions>
-                        <Button dense color="primary">
-                            <Link to={`/details/${artId}`}>Read More</Link>
-                        </Button>
-                    </CardActions>
-                </div>
-            </Card> */}
         </div>
     );
 };

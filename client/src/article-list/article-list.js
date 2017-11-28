@@ -2,7 +2,6 @@
 import React from 'react';
 
 // MATERIAL-UI
-import Paper from 'material-ui/Paper';
 import { LinearProgress } from 'material-ui/Progress';
 import Grid from 'material-ui/Grid';
 
@@ -10,15 +9,15 @@ import Grid from 'material-ui/Grid';
 import ArticlePreview from './article-preview';
 
 const ArticleList = ( { news, isFetching } ) => {
-    if ( !news || isFetching || news.length === 0 ) {
-        return null;
-    }
+    // if ( !news || isFetching || news.length === 0 ) {
+    //     return null;
+    // }
     console.log( 'ArticleList - news: ', news );
 
     const articleList = news.map( ( article, i ) => {
         const {title, author, description, source, urlToImage} = article;
         return (
-            <Grid item xs={12}>
+            <Grid key={i} item xs={12}>
                 <ArticlePreview
                     key={i}
                     artId={i}
@@ -39,8 +38,9 @@ const ArticleList = ( { news, isFetching } ) => {
                 direction='column'
                 justify='flex-start'
                 // alignItems='stretch'
-                spacing={24}>
-                {articleList}
+                spacing={8}>
+                { isFetching && <LinearProgress /> }
+                { articleList }
             </Grid>
         </div>
     );

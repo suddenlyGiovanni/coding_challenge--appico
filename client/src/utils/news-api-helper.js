@@ -39,6 +39,7 @@ export const parseQueryParams = ( dates, sources ) => {
     const parsedSources = parseSources(sources);
     objToReturn.sources = parsedSources.join(',');
     objToReturn.sortBy = 'popularity';
+    objToReturn.language = 'en';
     return objToReturn;
 };
 
