@@ -9,11 +9,10 @@ import Grid from 'material-ui/Grid';
 import ArticlePreview from './article-preview';
 
 const ArticleList = ( { news, isFetching, location, history  } ) => {
-    // if ( !news || isFetching || news.length === 0 ) {
-    //     return null;
-    // }
-    // console.log( 'ArticleList - props: ', props );
-
+    if ( !news || news.length === 0 ) {
+        return null;
+    }
+    
     const articleList = news.map( ( article, i ) => {
         const {title, author, description, source, urlToImage} = article;
         return (

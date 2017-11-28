@@ -1,6 +1,5 @@
 // REACT
 import React from 'react';
-import { Link } from 'react-router-dom'
 
 // MATERIAL-UI
 import { withStyles } from 'material-ui/styles';
@@ -44,7 +43,7 @@ const ArticlePreview = ( {
     source,
     urlToImage,
     classes,
-    location,
+    theme,
     history
 } ) => {
 
@@ -82,10 +81,11 @@ const ArticlePreview = ( {
 
 
                         <CardActions>
-                            <Button dense color='primary'>
-                                <Typography type='button'>
-                                    <Link to={`/details/${artId}`}>Read More</Link>
-                                </Typography>
+                            <Button
+                                dense
+                                color='primary'
+                                onClick={()=>history.push(`/details/${artId}`)}>
+                                Read More
                             </Button>
                         </CardActions>
 
