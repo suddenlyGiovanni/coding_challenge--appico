@@ -23,19 +23,16 @@ const styles = theme => ( {
 } );
 
 const capitals = word => {
-    const idxUpperCase = word.split('').map(( letter, index ) => {
-        if ( letter === letter.toUpperCase() || index === 0 ) {
-            return letter;
-        }
-    }).join('');
-    return idxUpperCase;
+    return word.split('')
+        .filter(( letter, index ) => ( letter === letter.toUpperCase() || index === 0 ) ? true : false )
+        .join('');
+
 };
 
 const trimStr = (string, length) => {
-    const trimmedString = string.length > length
+    return (string.length > length)
         ? string.substring( 0, length - 3 ) + '...'
         : string;
-    return trimmedString;
 };
 
 
@@ -46,8 +43,7 @@ const ArticlePreview = ( {
     description,
     source,
     urlToImage,
-    classes,
-    theme
+    classes
 } ) => {
 
     return (
