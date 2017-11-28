@@ -3,26 +3,20 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 // REDUX
-import { store } from '../index';
+// import { store } from '../index';
 // ACTIONS
-import { fetchNewsRequest } from '../actions';
+// import { fetchNewsRequest } from '../actions';
 
 // COMPONENTS
 import ArticleListContainer from '../article-list/article-list-container';
 import ArticleDetails from '../article-details/article-details';
 
 // UTILS
-import { parseQueryParams } from '../utils/news-api-helper';
+// import { parseQueryParams } from '../utils/news-api-helper';
 
 // import './app.css';
 
 export default class App extends Component {
-    componentDidMount(){
-        const { dates, sources } = store.getState();
-        // console.log('\ndates: ', dates, '\nsources: ', sources);
-        const parsedQueryParams = parseQueryParams( dates, sources );
-        store.dispatch(fetchNewsRequest(parsedQueryParams));
-    }
 
     render() {
         return (

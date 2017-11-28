@@ -37,16 +37,14 @@ const handleErrors = error => {
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
-module.exports.fetchNews = async (url, queryParams) => {
+module.exports.fetchNews = async ( url, queryParams ) => {
     try {
-    const response = await axios.get(url, {
-        params: { ...queryParams }
-    });
-        if (response.status !== 200) {
-            throw Error(response)
+        const response = await axios.get( url, { params: { ...queryParams } } );
+        if ( response.status !== 200 ) {
+            throw Error( response )
         }
         return response.data.articles;
-    } catch (err) {
-        handleErrors(err)
+    } catch ( err ) {
+        handleErrors( err )
     }
 };

@@ -9,7 +9,11 @@ import { store } from '../index';
 // ACTIONS
 import { selectDates } from '../actions';
 
-// // COMPONENTS: REACT-DATES
+// COMPONENTS
+import Grid from 'material-ui/Grid';
+
+
+// COMPONENTS: REACT-DATES
 import { DayPickerRangeController } from 'react-dates';
 import { forbidExtraProps } from 'airbnb-prop-types';
 // INITIALIZE
@@ -153,15 +157,18 @@ class DayPickerRangeControllerWrapper extends React.Component {
 
         return (
             <div>
-                {
-                    showInputs &&
-                    <div style={{ marginBottom: 16}}>
-                        <input type="text" name="start date" value={startDateString || ''} readOnly="readOnly"/>
-                        <input type="text" name="end date" value={endDateString || ''} readOnly="readOnly"/>
-                    </div>
-                }
+                <Grid container>
 
-                <DayPickerRangeController {...props} onDatesChange={this.onDatesChange} onFocusChange={this.onFocusChange} focusedInput={focusedInput} startDate={startDate} endDate={endDate}/>
+                    {
+                        showInputs &&
+                        <div style={{ marginBottom: 16}}>
+                            <input type="text" name="start date" value={startDateString || ''} readOnly="readOnly"/>
+                            <input type="text" name="end date" value={endDateString || ''} readOnly="readOnly"/>
+                        </div>
+                    }
+
+                    <DayPickerRangeController {...props} onDatesChange={this.onDatesChange} onFocusChange={this.onFocusChange} focusedInput={focusedInput} startDate={startDate} endDate={endDate}/>
+                </Grid>
             </div>
         );
     }
