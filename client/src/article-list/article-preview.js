@@ -43,7 +43,9 @@ const ArticlePreview = ( {
     description,
     source,
     urlToImage,
-    classes
+    classes,
+    location,
+    history
 } ) => {
 
     return (

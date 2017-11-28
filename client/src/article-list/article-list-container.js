@@ -101,9 +101,7 @@ class ArticleListContainer extends Component {
                         <SourceSelector />
                     </Grid>
                     <Grid item xs={12}>
-                        <ArticleList
-                            isFetching={this.props.isFetching}
-                            news={this.props.news}/>
+                        <ArticleList {...this.props}/>
                     </Grid>
                 </Grid>
             </div>
