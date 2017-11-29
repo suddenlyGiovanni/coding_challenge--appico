@@ -13,7 +13,11 @@ import {
     FormGroup,
     FormControlLabel } from 'material-ui/Form';
 
+// MATERIAL-UI
 import Checkbox from 'material-ui/Checkbox';
+
+// CSS
+import './source-selector.css';
 
 class SourceSelector extends Component {
     constructor( props ) {
@@ -91,10 +95,9 @@ class SourceSelector extends Component {
     }
 
     render() {
-        // console.log('render: ', this.state);
         return (
             <div>
-                <FormControl component='fieldset'>
+                <FormControl component='fieldset' className='src-container'>
                     <FormLabel component='legend'>
                         Select Sources:
                     </FormLabel>

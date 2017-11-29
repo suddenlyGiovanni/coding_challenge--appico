@@ -28,11 +28,7 @@ const capitals = word => {
 
 };
 
-const trimStr = (string, length) => {
-    return (string.length > length)
-        ? string.substring( 0, length - 3 ) + '...'
-        : string;
-};
+
 
 
 const ArticlePreview = ( {
@@ -46,6 +42,15 @@ const ArticlePreview = ( {
     theme,
     history
 } ) => {
+    const trimStr = (string, length) => {
+        if (!string) {
+            return null;
+        } else {
+            return (string.length > length)
+                ? string.substring( 0, length - 3 ) + '...'
+                : string;
+        }
+    };
 
     return (
         <div>
@@ -65,7 +70,7 @@ const ArticlePreview = ( {
                             title={trimStr(title, 50)}
                             subheader={`by ${author}`}
                             avatar={
-                                <Avatar aria-label="Recipe" className={classes.avatar}>
+                                <Avatar aria-label='Recipe' className={classes.avatar}>
                                     {capitals(source)}
                                 </Avatar>
                             }

@@ -10,30 +10,13 @@ import { fetchNewsRequest } from '../actions';
 import moment from 'moment';
 import { parseQueryParams } from '../utils/news-api-helper';
 
-// MATERIAL-UI
-import { withStyles } from 'material-ui/styles';
-import Grid from 'material-ui/Grid';
-import Paper from 'material-ui/Paper';
-
 // COMPONENTS
 import DayPickerRangeControllerWrapper from '../date-picker/day-picker-range-controller-wrapper';
 import SourceSelector from '../source-selector/source-selector';
 import ArticleList from './article-list';
 
-
-const styles = theme => ( {
-    root: {
-        flexGrow: 1,
-        marginTop: 30
-    },
-    paper: {
-        padding: 16,
-        textAlign: 'center',
-        color: theme.palette.text.secondary
-    }
-} );
-
-
+// CSS
+import './article-list-container.css';
 
 
 
@@ -73,20 +56,17 @@ class ArticleListContainer extends Component {
     }
 
     render(){
-        // console.log(this.props);
         const { todayDate } = this.state;
-        const { classes } = this.props;
         return (
-            <div className={classes.root}>
-                <Grid container spacing={24}>
-                    {/* HEADING */}
-                    <Grid item xs={12}>
-                        <Paper className={classes.paper}>
-                            News {this.composeHeader(this.props.dates)}
-                        </Paper>
-                    </Grid>
+            <div className='container'>
 
-                    <Grid item xs={12} sm={8}>
+                <header className='title-wrapper'>
+                    <h1 className='title'>News {this.composeHeader(this.props.dates)}</h1>
+                </header>
+
+                <div className='cal-sel-container'>
+
+                    <div className='cal-wrapper'>
                         <DayPickerRangeControllerWrapper
                             firstDayOfWeek={1}
                             numberOfMonths={1}
@@ -96,14 +76,18 @@ class ArticleListContainer extends Component {
                             initialStartDate={todayDate}
                             initialEndDate={todayDate}
                         />
-                    </Grid>
-                    <Grid item xs={12} sm={4}>
+                    </div>
+
+                    <div className='sel-wrapper'>
                         <SourceSelector />
-                    </Grid>
-                    <Grid item xs={12}>
-                        <ArticleList {...this.props}/>
-                    </Grid>
-                </Grid>
+                    </div>
+
+                </div>
+
+                <section  className='list-wrapper'>
+                    <ArticleList {...this.props}/>
+                </section>
+
             </div>
         );
     }
@@ -121,4 +105,4 @@ const mapDispatchToProps = dispatch => ( {
     fetchNewsRequest: params => dispatch( fetchNewsRequest( params ) )
 } );
 
-export default connect( mapStateToProps, mapDispatchToProps )( withStyles(styles)(ArticleListContainer) );
+export default connect( mapStateToProps, mapDispatchToProps )(ArticleListContainer);

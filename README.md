@@ -71,11 +71,12 @@ $ cd config && touch secrets.json
 ##### secret.json
 
 ```javascript
-{}
+{
+    "newsApiKey": "XXXXXXXXXXXXXXXXX"
+}
 ```
 
 ## How to Run it locally:
-Then in a new tab/terminal run:
 ```bash
 $ npm run development
 ```

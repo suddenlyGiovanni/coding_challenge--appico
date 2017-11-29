@@ -1,6 +1,5 @@
 // REACT
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
 // REDUX
 import { connect } from 'react-redux';
 
@@ -10,7 +9,6 @@ import './article-detail.css';
 
 // MATERIAL-UI
 import Button from 'material-ui/Button';
-import Typography from 'material-ui/Typography';
 import Grid from 'material-ui/Grid';
 
 
@@ -21,7 +19,6 @@ class ArticleDetails extends Component {
         if (!this.props.article) {
             return null;
         }
-        const { classes } = this.props;
         const {
             title,
             author,
